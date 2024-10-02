@@ -1,13 +1,18 @@
 package com.sagent.pms.Model;
 
+import com.sagent.pms.dto.RoleDTO;
+import com.sagent.pms.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "app_user") // Avoid "user" keyword conflict in SQL
+@Table(name = "app_user")
 public class AppUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userID;
@@ -19,19 +24,30 @@ public class AppUser {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_roles", // Junction table
+            name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles; // Assign roles during registration
+    private Set<Role> roles;
 
-    // Method to get the first role ID (if assuming one role per user)
-    public Integer getRoleId() {
-        // Return null if roles are not assigned
-        if (roles == null || roles.isEmpty()) {
-            return null;
+    public UserDTO toUserDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserID(this.userID);
+        userDTO.setName(this.name);
+        userDTO.setEmail(this.email);
+        userDTO.setPhoneNumber(this.phoneNumber);
+
+        if (this.roles != null) { // Check if roles is not null
+            Set<RoleDTO> roleDTOs = new HashSet<>();
+            this.roles.forEach(role -> {
+                RoleDTO roleDTO = new RoleDTO();
+                roleDTO.setRoleID(role.getRoleID());
+                roleDTO.setName(role.getName());
+                roleDTOs.add(roleDTO);
+            });
+            userDTO.setRoles(roleDTOs);
         }
-        // Get the first role's ID
-        return roles.iterator().next().getRoleId(); // Assuming Role has a method getRoleId()
+
+        return userDTO;
     }
 }

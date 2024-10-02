@@ -5,6 +5,8 @@ import com.sagent.pms.Model.Role;
 import com.sagent.pms.Repository.UserRepository;
 import com.sagent.pms.Repository.RoleRepository;
 import com.sagent.pms.Security.JwtUtil;
+import com.sagent.pms.dto.LoginResponseDTO;
+import com.sagent.pms.dto.UserDTO;
 import com.sagent.pms.dto.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,10 +49,19 @@ public class AuthService {
     }
 
     // Login a user and return a JWT token
-    public String login(String email, String password) {
+//    public String login(String email, String password) {
+//        AppUser appUser = userRepository.findByEmail(email);
+//        if (appUser != null && passwordEncoder.matches(password, appUser.getPassword())) {
+//            return jwtUtil.generateToken(appUser);
+//        }
+//        throw new InvalidCredentialsException("Invalid credentials");
+//    }
+    public LoginResponseDTO login(String email, String password) {
         AppUser appUser = userRepository.findByEmail(email);
         if (appUser != null && passwordEncoder.matches(password, appUser.getPassword())) {
-            return jwtUtil.generateToken(appUser);
+            String token = jwtUtil.generateToken(appUser);
+            UserDTO userDTO = appUser.toUserDTO();
+            return new LoginResponseDTO(token, userDTO);
         }
         throw new InvalidCredentialsException("Invalid credentials");
     }

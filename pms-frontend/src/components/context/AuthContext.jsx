@@ -1,4 +1,3 @@
-// AuthContext.jsx
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 
@@ -11,9 +10,15 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const response = await axios.post('http://localhost:8080/auth/login', { email, password });
-            setToken(response.data);
-            setUser(email); // Or fetch user details
-            localStorage.setItem('authToken', response.data); // Store token in localStorage
+            
+            // Store token and user from the response
+            setToken(response.data.token);
+            setUser(response.data.user);
+
+            // Save token and user in localStorage
+            localStorage.setItem('authToken', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+
         } catch (error) {
             console.error('Login failed:', error);
         }
@@ -30,7 +35,8 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser(null);
         setToken(null);
-        localStorage.removeItem('authToken'); // Remove token from localStorage
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('user');
     };
 
     return (
@@ -40,4 +46,5 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
+// Hook to use the Auth context
 export const useAuth = () => useContext(AuthContext);

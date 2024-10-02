@@ -2,11 +2,13 @@ package com.sagent.pms.Controller;
 
 import com.sagent.pms.Model.AppUser;
 import com.sagent.pms.Service.AuthService;
+import com.sagent.pms.dto.LoginResponseDTO;
 import com.sagent.pms.dto.LoginRequestDTO;
 import com.sagent.pms.dto.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,12 +29,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequestDTO) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO) {
         try {
-            String token = authService.login(loginRequestDTO.getEmail(), loginRequestDTO.getPassword());
-            return ResponseEntity.ok("Login successful");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed: " + e.getMessage());
+            LoginResponseDTO response = authService.login(loginRequestDTO.getEmail(), loginRequestDTO.getPassword());
+            return ResponseEntity.ok(response);
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDTO(null, null));
         }
     }
 }
