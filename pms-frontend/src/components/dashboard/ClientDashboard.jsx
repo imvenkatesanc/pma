@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navigation from '../Navigation';
 
 const ClientDashboard = () => {
     const handleLogout = () => {
@@ -10,16 +11,7 @@ const ClientDashboard = () => {
     return (
         <div className="client-dashboard">
             {/* Navigation Bar */}
-            <nav className="navbar">
-                <h2>Client Dashboard</h2>
-                <ul>
-                    <li><Link to="/client/properties">My Properties</Link></li>
-                    <li><Link to="/client/requests">Requests</Link></li>
-                    <li><Link to="/client/agreements">Agreements</Link></li>
-                    <li><Link to="/client/profile">Profile</Link></li>
-                    <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
-                </ul>
-            </nav>
+            <Navigation/>
 
             {/* Main Content */}
             <div className="dashboard-content">

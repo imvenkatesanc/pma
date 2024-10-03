@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import pmsLogo from '../../assets/pms_logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt,faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     const { login, user, token } = useAuth();
@@ -18,28 +18,31 @@ const Login = () => {
 
         try {
             await login(email, password);
-
-            if (user && token) {
-                if (user.roles && user.roles.length > 0) {
-                    const userRole = user.roles[0]?.name?.toLowerCase();
-                    if (userRole === 'landlord') {
-                        navigate('/landlord-dashboard');
-                    } else if (userRole === 'client') {
-                        navigate('/client-dashboard');
-                    } else {
-                        setError('Invalid role.');
-                    }
-                } else {
-                    setError('User has no assigned roles.');
-                }
-            } else {
-                setError('Login failed. Please check your credentials.');
-            }
         } catch (err) {
             setError('Login failed. Please try again.');
             console.error(err);
         }
     };
+
+    useEffect(() => {
+        if (user && token) {
+            if (user.roles && user.roles.length > 0) {
+                const userRole = user.roles[0]?.name?.toLowerCase();
+                switch (userRole) {
+                    case 'landlord':
+                        navigate('/landlord-dashboard');
+                        break;
+                    case 'client':
+                        navigate('/client-dashboard');
+                        break;
+                    default:
+                        setError('Invalid role.');
+                }
+            } else {
+                setError('User has no assigned roles.');
+            }
+        }
+    }, [user, token, navigate]);
 
     return (
         <div className="auth-container">
@@ -55,17 +58,25 @@ const Login = () => {
                     <input
                         type="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            setError(null);
+                        }}
                         placeholder="Email"
                         className="auth-input"
+                        aria-label="Email"
                         required
                     />
                     <input
                         type="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            setError(null);
+                        }}
                         placeholder="Password"
                         className="auth-input"
+                        aria-label="Password"
                         required
                     />
                     <button type="submit" className="auth-button">
@@ -78,7 +89,7 @@ const Login = () => {
                 </p>
             </div>
         </div>
-    );    
+    );
 };
 
 export default Login;

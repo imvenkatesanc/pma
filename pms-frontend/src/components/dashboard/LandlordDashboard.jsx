@@ -1,20 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navigation from '../Navigation';
 
 const LandlordDashboard = () => {
     return (
         <div className="landlord-dashboard">
             {/* Navigation Bar */}
-            <nav className="navbar">
-                <h2>Landlord Dashboard</h2>
-                <ul>
-                    <li><Link to="/landlord/properties">My Properties</Link></li>
-                    <li><Link to="/landlord/requests">Tenant Requests</Link></li>
-                    <li><Link to="/landlord/agreements">Agreements</Link></li>
-                    <li><Link to="/landlord/transactions">Transactions</Link></li>
-                    <li><Link to="/landlord/profile">Profile</Link></li>
-                </ul>
-            </nav>
+            <Navigation/>
 
             {/* Main Content */}
             <div className="dashboard-content">
