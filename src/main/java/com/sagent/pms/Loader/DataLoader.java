@@ -1,7 +1,7 @@
 package com.sagent.pms.Loader;
 
-import com.sagent.pms.Model.Role;
-import com.sagent.pms.Repository.RoleRepository;
+import com.sagent.pms.models.Role;
+import com.sagent.pms.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
