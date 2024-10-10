@@ -1,0 +1,8 @@
+com\dailycodebuffer\filemngt\entity\Attachment.class
+com\dailycodebuffer\filemngt\repository\AttachmentRepository.class
+com\dailycodebuffer\filemngt\SpringBootFileUploadApplication.class
+com\dailycodebuffer\filemngt\ResponseData.class
+com\dailycodebuffer\filemngt\model.class
+com\dailycodebuffer\filemngt\service\AttachmentServiceImpl.class
+com\dailycodebuffer\filemngt\controller\AttachmentController.class
+com\dailycodebuffer\filemngt\service\AttachmentService.class
