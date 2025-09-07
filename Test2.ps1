@@ -21,12 +21,6 @@ function Send-TeamsNotification {
         [string]$statusColor # 'Red', 'Green', 'Default'
     )
 
-    $color = switch ($statusColor) {
-        "Red"    { "#FF0000" }
-        "Green"  { "#008000" }
-        default  { "#808080" }
-    }
-
     $payload = @{
         "type" = "message"
         "attachments" = @(
@@ -34,9 +28,9 @@ function Send-TeamsNotification {
                 "contentType" = "application/vnd.microsoft.card.adaptive"
                 "content" = @{
                     "$schema" = "http://adaptivecards.io/schemas/adaptive-card.json"
-                    "type" = "AdaptiveCard"
+                    "type"    = "AdaptiveCard"
                     "version" = "1.2"
-                    "body" = @(
+                    "body"    = @(
                         @{
                             "type"  = "TextBlock"
                             "text"  = $title
@@ -118,18 +112,18 @@ function Check-Jobs {
             switch ($statusId) {
                 4 { # FAILED
                     $title   = "❌ Process FAILED: $name"
-                    $message = "Process **FAILED** (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
+                    $message = "Process FAILED (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
                     Send-TeamsNotification -title $title -message $message -statusColor "Red"
                 }
                 5 { # TIMED OUT
                     $title   = "⏳ Process TIMED-OUT: $name"
-                    $message = "Process **TIMED-OUT** (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
+                    $message = "Process TIMED-OUT (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
                     Send-TeamsNotification -title $title -message $message -statusColor "Red"
                 }
-                3 { # COMPLETED
+                3 { # COMPLETED (only majors)
                     if ($majorJobs -contains $id) {
                         $title   = "✅ Major Process COMPLETED: $name"
-                        $message = "Process **COMPLETED** (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
+                        $message = "Process COMPLETED (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
                         Send-TeamsNotification -title $title -message $message -statusColor "Green"
                     }
                 }
