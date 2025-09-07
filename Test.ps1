@@ -1,70 +1,70 @@
 # =========================================
-# Teams Webhook Configuration
+# Teams Webhook / SQL config - REPLACE THESE
 # =========================================
-$TeamsWebhookUrl = "https://default00a2f2d91d7b4a75adb10c64636b80.6b.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/479c4f91d483473e9ef607e4a910a256/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=t6wTYJK5fIte2VTjFoPrevFuvIQjaK0dxUURzyVMjWg" 
+$TeamsWebhookUrl = "https://default00a2f2d91d7b4a75adb10c64636b80.6b.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/479c4f91d483473e9ef607e4a910a256/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=t6wTYJK5fIte2VTjFoPrevFuvIQjaK0dxUURzyVMjWg"
 
-# =========================================
-# SQL Server connection details
-# !!! SECURITY WARNING: Storing plain-text password is not recommended for production !!!
-# =========================================
 $ServerInstance = "10.32.56.5"
 $Username = "venkatesan.c@sagentlending.com"
-$Password = "dara@sagent2024" # !!! REPLACE THIS WITH YOUR ACTUAL SQL SERVER PASSWORD !!!
+$Password = "your_password_here"
 $Database = "CIRRUS"
 
 # =========================================
-# Function to Send Teams Notifications (Adaptive Card)
+# Helper: send Adaptive Card to Teams
 # =========================================
-# =========================================
-# Function to Send Teams Notifications (Adaptive Card)
-# =========================================
-
 function Send-TeamsNotification {
     param(
-        [string]$title, 
+        [string]$title,
         [string]$message,
-        [string]$statusColor # Optional: 'Red' for failed, 'Green' for completed
+        [string]$severity    # "Red"|"Green"|"Yellow"|"Default"
     )
 
-    # Basic validation for webhook URL
-    if ([string]::IsNullOrWhiteSpace($TeamsWebhookUrl) -or $TeamsWebhookUrl.Contains("placeholder")) {
-        Write-Host "Teams Webhook URL is not configured or is a placeholder. Skipping notification." -ForegroundColor Yellow
+    if ([string]::IsNullOrWhiteSpace($TeamsWebhookUrl)) {
+        Write-Host "Teams webhook not configured. Skipping notification." -ForegroundColor Yellow
         return
     }
 
-    # Use a direct, simpler object creation to avoid the cast error
-    $payload = @{
-        "type" = "message"
-        "attachments" = @(
+    # map severity to adaptive card color keyword
+    $textColor = switch ($severity) {
+        "Red"     { "attention" }
+        "Green"   { "good" }
+        "Yellow"  { "warning" }
+        default   { "default" }
+    }
+
+    $content = @{
+        '$schema' = "http://adaptivecards.io/schemas/adaptive-card.json"
+        type      = "AdaptiveCard"
+        version   = "1.2"
+        body      = @(
             @{
-                "contentType" = "application/vnd.microsoft.card.adaptive"
-                "contentUrl" = $null
-                "content" = @{
-                    "$schema" = "http://adaptivecards.io/schemas/adaptive-card.json"
-                    "type" = "AdaptiveCard"
-                    "version" = "1.2"
-                    "body" = @(
-                        @{
-                            "type" = "TextBlock"
-                            "text" = $title
-                            "weight" = "bolder"
-                            "size" = "medium"
-                        },
-                        @{
-                            "type" = "TextBlock"
-                            "text" = $message
-                            "wrap" = $true
-                        }
-                    )
-                }
+                type  = "TextBlock"
+                text  = $title
+                weight = "Bolder"
+                size  = "Medium"
+            },
+            @{
+                type  = "TextBlock"
+                text  = $message
+                wrap  = $true
+                color = $textColor
+            }
+        )
+    }
+
+    $payload = @{
+        type = "message"
+        attachments = @(
+            @{
+                contentType = "application/vnd.microsoft.card.adaptive"
+                contentUrl  = $null
+                content      = $content
             }
         )
     }
 
     try {
-        # Convert the payload to JSON for the request body
-        $jsonPayload = $payload | ConvertTo-Json -Depth 5 -Compress
-        Invoke-RestMethod -Uri $TeamsWebhookUrl -Method Post -Body $jsonPayload -ContentType 'application/json' -TimeoutSec 10
+        $jsonPayload = $payload | ConvertTo-Json -Depth 10 -Compress
+        Invoke-RestMethod -Uri $TeamsWebhookUrl -Method Post -Body $jsonPayload -ContentType 'application/json' -TimeoutSec 15
         Write-Host "Teams notification sent: $title" -ForegroundColor Green
     }
     catch {
@@ -72,35 +72,17 @@ function Send-TeamsNotification {
     }
 }
 
-
-# ---- Test Teams before monitoring ----
-Write-Host "Sending initial Teams webhook test notification..." -ForegroundColor Yellow
-Send-TeamsNotification -title "PowerShell Monitoring Test" -message "Teams webhook setup works from PowerShell at $(Get-Date). Script starting..." -statusColor "Green"
-
 # =========================================
-# Ensure SQL Server Module is Available
+# SQL query (edit if needed)
 # =========================================
-
-Write-Host "Checking for SqlServer PowerShell module..." -ForegroundColor Cyan
-if (-not (Get-Command Invoke-Sqlcmd -ErrorAction SilentlyContinue)) {
-    try {
-        Write-Host "SqlServer module not found. Attempting to import..." -ForegroundColor Yellow
-        Import-Module SqlServer -ErrorAction Stop
-        Write-Host "SqlServer module imported successfully." -ForegroundColor Green
-    }
-    catch {
-        Write-Host "Invoke-Sqlcmd not found. Please ensure the SqlServer module is installed and accessible." -ForegroundColor Red
-        Write-Host "You might need to run: Install-Module -Name SqlServer -Scope CurrentUser -Force" -ForegroundColor Yellow
-        exit 1 # Exit with an error code
-    }
-}
-
-# =========================================
-# SQL Query for Process Log Monitoring
-# =========================================
-
 $query = @"
-SELECT TOP 1000 PRCS_NM, PRCS_STS_DESC, prcs.PRCS_ID, prcs.PRCS_STS_ID, prcs.PRTFL_CD, prcs.STRT_DTTM
+SELECT TOP 1000 
+    PRCS_NM, 
+    PRCS_STS_DESC, 
+    prcs.PRCS_ID, 
+    prcs.PRCS_STS_ID, 
+    prcs.PRTFL_CD, 
+    prcs.STRT_DTTM
 FROM [RPT].[PRCS_LOG] (NOLOCK) prcs
 JOIN [ENUM].[PRCS] enum ON enum.PRCS_ID = prcs.PRCS_ID
 JOIN [ENUM].[PRCS_STS] sts ON sts.PRCS_STS_ID = prcs.PRCS_STS_ID
@@ -109,98 +91,18 @@ ORDER BY prcs.STRT_DTTM DESC;
 "@
 
 # =========================================
-# Monitoring Configuration
+# Monitoring settings
 # =========================================
-$checkIntervalSeconds = 30 # Increased interval for less frequent checks (adjust as needed)
-$majorCodes = @('303', '304', '305') # PRCS_ID values considered 'major' jobs
+$checkIntervalSeconds = 30
+$majorIds = @(303,304,305)        # major PRCS_IDs (ints)
 
-# Tracking for job completion and notification status
-$completedMajor = @{} # Tracks if major jobs are completed
-$notified = @{}       # Tracks if a notification has been sent for a specific process status
+# "notified" ensures one-time notifications per push state (PRCS_ID-status)
+$notified = @{}
 
-# Initialize $completedMajor for each major code
-foreach ($code in $majorCodes) {
-    $completedMajor[$code] = $false
-}
-
-# =========================================
-# Function to Check Job Status and Send Notifications
-# =========================================
-function Check-Jobs {
-    param($results)
-
-    if (-not $results) {
-        Write-Host "No results returned from SQL query." -ForegroundColor Yellow
-        return
-    }
-
-    foreach ($row in $results) {
-        # Ensure properties exist before accessing to prevent errors
-        if ($row.PSObject.Properties.Name -notcontains 'PRTFL_CD' -or
-            $row.PSObject.Properties.Name -notcontains 'PRCS_ID' -or
-            $row.PSObject.Properties.Name -notcontains 'PRCS_STS_ID' -or
-            $row.PSObject.Properties.Name -notcontains 'PRCS_STS_DESC' -or
-            $row.PSObject.Properties.Name -notcontains 'PRCS_NM') {
-            Write-Host "Skipping row due to missing required properties." -ForegroundColor Yellow
-            continue
-        }
-
-        $code        = $row.PRTFL_CD.ToString()
-        $id          = $row.PRCS_ID.ToString()
-        $statusId    = [int]$row.PRCS_STS_ID
-        $statusDesc  = $row.PRCS_STS_DESC
-        $processName = $row.PRCS_NM
-        $key         = "$id-$statusId"
-
-        # Update completion status for major jobs
-        if ($statusId -eq 3 -and ($majorCodes -contains $id)) {
-            $completedMajor[$id] = $true
-        }
-
-        # Send notification only if this specific status for this process hasn't been notified yet
-        if (-not $notified.ContainsKey($key)) {
-            switch ($statusId) {
-                0 { # FAILED
-                    $title   = "SQL Process FAILED: $($processName)"
-                    $message = "Process **FAILED** (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
-                    Send-TeamsNotification -title $title -message $message -statusColor "Red"
-                    Write-Host "Notification Sent (FAILED) -> PRCS_ID=$id, PRTFL_CD=$code - $processName" -ForegroundColor Red
-                }
-                3 { # COMPLETED
-                    if ($majorCodes -contains $id) {
-                        $title   = "SQL Process COMPLETED: $($processName)"
-                        $message = "Process **COMPLETED** (PRCS_ID=$id, PRTFL_CD=$code)`nStatus: $statusDesc"
-                        Send-TeamsNotification -title $title -message $message -statusColor "Green"
-                        Write-Host "Notification Sent (COMPLETED) -> PRCS_ID=$id, PRTFL_CD=$code - $processName" -ForegroundColor Green
-                    } else {
-                        Write-Host "COMPLETED -> PRCS_ID=$id, PRTFL_CD=$code - $processName" -ForegroundColor DarkGreen
-                    }
-                }
-                1 { # PRODUCED
-                    Write-Host "Status: PRODUCED -> PRCS_ID=$id, PRTFL_CD=$code - $processName" -ForegroundColor Yellow
-                }
-                2 { # PROCESSING
-                    Write-Host "Status: PROCESSING -> PRCS_ID=$id, PRTFL_CD=$code - $processName" -ForegroundColor Cyan
-                }
-                default { # Other statuses
-                    Write-Host "Status: UNKNOWN ($statusDesc) -> PRCS_ID=$id, PRTFL_CD=$code - $processName" -ForegroundColor White
-                }
-            }
-            $notified[$key] = $true # Mark as notified
-        }
-    }
-}
-
-# =========================================
-# Main Monitoring Loop
-# =========================================
-
-Write-Host "Starting SQL process monitoring loop..." -ForegroundColor Magenta
+Write-Host "Starting monitoring loop..." -ForegroundColor Magenta
 
 while ($true) {
     try {
-        Write-Host "Executing SQL query for process status at $(Get-Date)..." -ForegroundColor DarkCyan
-        # Using hardcoded Username and Password for Invoke-Sqlcmd
         $results = Invoke-Sqlcmd -ServerInstance $ServerInstance `
                                  -Database $Database `
                                  -Username $Username `
@@ -208,14 +110,81 @@ while ($true) {
                                  -Query $query `
                                  -TrustServerCertificate
 
-        Check-Jobs -results $results
+        if (-not $results) {
+            Write-Host "Query returned no rows." -ForegroundColor Yellow
+        }
+        else {
+            # Iterate results and send notifications for:
+            #  - any PRCS_STS_ID = 4 (FAILED)  -> notify
+            #  - any PRCS_STS_ID = 5 (TIMED-OUT) -> notify
+            #  - PRCS_STS_ID = 3 (COMPLETED) only for majors -> notify
+            foreach ($row in $results) {
+                $idInt     = [int]$row.PRCS_ID
+                $statusId  = [int]$row.PRCS_STS_ID
+                $processNm = [string]$row.PRCS_NM
+                $prtfl     = [string]$row.PRTFL_CD
+                $statusDesc= [string]$row.PRCS_STS_DESC
+
+                $key = "$idInt-$statusId"
+                if ($notified.ContainsKey($key)) { continue }
+
+                if ($statusId -eq 4) {
+                    # FAILED
+                    $title = "FAILED: $processNm"
+                    $msg   = "Process FAILED (PRCS_ID=$idInt, PRTFL_CD=$prtfl)`nStatus: $statusDesc"
+                    Send-TeamsNotification -title $title -message $msg -severity "Red"
+                    Write-Host "NOTIFIED FAILED -> PRCS_ID=$idInt, PRTFL_CD=$prtfl" -ForegroundColor Red
+                    $notified[$key] = $true
+                }
+                elseif ($statusId -eq 5) {
+                    # TIMED-OUT
+                    $title = "TIMED-OUT: $processNm"
+                    $msg   = "Process TIMED-OUT (PRCS_ID=$idInt, PRTFL_CD=$prtfl)`nStatus: $statusDesc"
+                    Send-TeamsNotification -title $title -message $msg -severity "Red"
+                    Write-Host "NOTIFIED TIMED-OUT -> PRCS_ID=$idInt, PRTFL_CD=$prtfl" -ForegroundColor Red
+                    $notified[$key] = $true
+                }
+                elseif ($statusId -eq 3 -and ($majorIds -contains $idInt)) {
+                    # Major completed
+                    $title = "COMPLETED: $processNm"
+                    $msg   = "Major process COMPLETED (PRCS_ID=$idInt, PRTFL_CD=$prtfl)`nStatus: $statusDesc"
+                    Send-TeamsNotification -title $title -message $msg -severity "Green"
+                    Write-Host "NOTIFIED COMPLETED (major) -> PRCS_ID=$idInt, PRTFL_CD=$prtfl" -ForegroundColor Green
+                    $notified[$key] = $true
+                }
+                # produced(1) and processing(2) are ignored (no notification)
+            }
+
+            # --- Determine final exit condition ---
+            # All majorIds must be present and have status 3 (Completed)
+            $allMajorsCompleted = $true
+            foreach ($mid in $majorIds) {
+                $majDone = $results | Where-Object { ([int]$_.PRCS_ID -eq $mid) -and ([int]$_.PRCS_STS_ID -eq 3) }
+                if (-not $majDone) { $allMajorsCompleted = $false; break }
+            }
+
+            # No failures/timeouts anywhere in results
+            $anyFailureOrTimeout = $results | Where-Object { ([int]$_.PRCS_STS_ID -eq 4) -or ([int]$_.PRCS_STS_ID -eq 5) }
+
+            if ($allMajorsCompleted -and -not $anyFailureOrTimeout) {
+                $title = "All Major Jobs Completed - Clean Run"
+                $message = "All major processes ($($majorIds -join ', ')) are COMPLETED and no FAILED/TIMED-OUT statuses detected. Monitoring stopping at $(Get-Date)."
+                Send-TeamsNotification -title $title -message $message -severity "Green"
+                Write-Host "Exit condition met: majors completed and no failures/timeouts. Stopping." -ForegroundColor Green
+                break
+            }
+            else {
+                # informational log
+                if (-not $allMajorsCompleted) { Write-Host "Waiting: not all major jobs are COMPLETED yet." -ForegroundColor Yellow }
+                if ($anyFailureOrTimeout) { Write-Host "Waiting: failures or timeouts present (won't stop until cleared)." -ForegroundColor Red }
+            }
+        }
     }
     catch {
-        Write-Host "An error occurred during the monitoring loop: $($_.Exception.Message)" -ForegroundColor Red
-        Send-TeamsNotification -title "PowerShell Monitoring Script Error" -message "An error occurred connecting to the database or running the query. Error: $($_.Exception.Message)" -statusColor "Red"
+        $err = $_.Exception.Message
+        Write-Host "Error during monitoring: $err" -ForegroundColor Red
+        Send-TeamsNotification -title "Monitoring Script Error" -message "Error: $err" -severity "Red"
     }
-    
-    # Wait for the next check
-    Write-Host "Waiting for $checkIntervalSeconds seconds..." -ForegroundColor DarkGray
+
     Start-Sleep -Seconds $checkIntervalSeconds
 }
