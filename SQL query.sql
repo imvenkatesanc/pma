@@ -53,3 +53,29 @@ JOIN sys.query_store_query qsq
 JOIN sys.query_store_query_text qsqt 
     ON qsq.query_text_id = qsqt.query_text_id
 ORDER BY rs.avg_duration DESC;
+
+
+
+
+
+
+
+USE CIRRUS;
+GO
+
+SELECT TOP 10
+    qsqt.query_sql_text AS QueryText,
+    rs.avg_duration / 1000.0 AS AvgDurationMs,
+    rs.last_duration / 1000.0 AS LastDurationMs,
+    rs.count_executions AS ExecutionCount,
+    rs.first_execution_time,
+    rs.last_execution_time
+FROM sys.query_store_runtime_stats rs
+JOIN sys.query_store_plan qsp 
+    ON rs.plan_id = qsp.plan_id
+JOIN sys.query_store_query qsq 
+    ON qsp.query_id = qsq.query_id
+JOIN sys.query_store_query_text qsqt 
+    ON qsq.query_text_id = qsqt.query_text_id
+WHERE rs.last_execution_time >= DATEADD(HOUR, -24, GETDATE())
+ORDER BY rs.avg_duration DESC;
