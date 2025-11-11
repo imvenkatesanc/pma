@@ -1,0 +1,296 @@
+LogicMonitor Review
+October 31, 2025
+AI-generated content may be incorrect
+
+Tautin, Rick (US - Pennsylvania)
+1 minute 37 seconds1:37
+Tautin, Rick (US - Pennsylvania) 1 minute 37 seconds
+Hey guys, sorry I'm late. Vivek's coming. Oh, here's Vivek right now. Perfect.
+Tautin, Rick (US - Pennsylvania) 1 minute 44 seconds
+I guess first question, does anybody not have access to logic monitor? I think we're all good, but is is everybody good with it?
+MS
+
+M, Shanmuganathan (IN - Chennai)
+1 minute 55 seconds1:55
+M, Shanmuganathan (IN - Chennai) 1 minute 55 seconds
+If so, enable most.
+
+N, Azeemullah (IN - Chennai)
+1 minute 55 seconds1:55
+N, Azeemullah (IN - Chennai) 1 minute 55 seconds
+Yeah, I yeah, we can able to access.
+TR
+
+Tautin, Rick (US - Pennsylvania)
+1 minute 58 seconds1:58
+Tautin, Rick (US - Pennsylvania) 1 minute 58 seconds
+OK, awesome. Just some. Yeah. So if if someone can't just just ping me and Vivek and I can get Shaka set up. But Vivek, I'll just let you kick this off and and take it away if you want to bring up logic monitor and start walking us through. Kind of figured today Vivek would just give us a good overview of it and just kind of like we did yesterday with app data.
+Tautin, Rick (US - Pennsylvania) 2 minutes 16 seconds
+As you guys are having any questions and stuff, I mean we can definitely ask them today, but we can schedule a follow up call with this as well. If there's any tweaks or anything we need to make or any other additional questions or or things that we have, we can we can schedule another call, but go ahead Vivek.
+
+Parmar, Vivek (IN - Bangalore, Encora)
+2 minutes 33 seconds2:33
+Parmar, Vivek (IN - Bangalore, Encora) 2 minutes 33 seconds
+Uh, yeah, so uh.
+Parmar, Vivek (IN - Bangalore, Encora) 2 minutes 37 seconds
+So I I know this team is going to be the NOC monitoring team. So I I know you guys already know about Logic Monitor and the monitoring tools. So we have been using Logic Monitor from past a couple of years. I think it's more than four years right now, three or four years and we have.
+Parmar, Vivek (IN - Bangalore, Encora) 2 minutes 56 seconds
+I've been monitoring the entire infrastructure, the back office infrastructure through logic monitor. I am not presenting some slides or something, but I will just talk about the basic stuff so that you understand it clearly and based on that you can see the front end and understand the portal itself.
+Parmar, Vivek (IN - Bangalore, Encora) 3 minutes 16 seconds
+So on the architectural front, this is one of the kind of a slide you can say. So we have the logic monitor data center here which is actually on the cloud and we have the front end, your browser, your mobile is the front end. We have the cloud in infrastructure here which is a storage cloud.
+Parmar, Vivek (IN - Bangalore, Encora) 3 minutes 35 seconds
+You can call it Azure Prospective or GCP Prospective or whatever the cloud applications are running, even the Microsoft Office 365 Duo proxy or whatever SaaS platforms are there. These are also included in the cloud infrastructure.
+Parmar, Vivek (IN - Bangalore, Encora) 39 minutes 43 seconds
+At the server then there will be an escalation mail which will actually go to my superior and he will be notified that this device is down. For that we have kept us 30 minutes. So anything which I have not sorted out and it's still recurring, it's giving some issues until and unless I have acknowledged it, then it will go to the higher authority.
+Parmar, Vivek (IN - Bangalore, Encora) 40 minutes 3 seconds
+see So the escalation chain here is back office chain SMS. Okay. So escalation chain is added here in escalation chain recipient group is added. Okay, so that's how it is configured. So
+Parmar, Vivek (IN - Bangalore, Encora) 40 minutes 19 seconds
+If you see the escalation chain here probably so you can say stage one, we all get notified using SMS and using e-mail because our e-mail is also marked in CC. Then there is a stage two where Jeff is notified.
+Parmar, Vivek (IN - Bangalore, Encora) 40 minutes 34 seconds
+And he he will be informed that things are going wrong after 30 minutes, though it will come to stage 2, which is a kind of an escalation. OK, so stage one, everybody get notified. Stage 2, Jeff exceptionally gets notified for the things which have not gone correctly.
+Parmar, Vivek (IN - Bangalore, Encora) 40 minutes 53 seconds
+OK, so like that we have different different alert rules for different different teams and you can see here probably everything has a group here. I will slide this a little bit for websites there is different for networking there is a different team for.
+Parmar, Vivek (IN - Bangalore, Encora) 41 minutes 12 seconds
+SQL Server there is a different set of servers and for Azure devices. For certain certain devices there are different different rules. OK, so we have certain 56 rules right now. I mean sub cleanup is needed because network team has multiple.
+Parmar, Vivek (IN - Bangalore, Encora) 41 minutes 31 seconds
+Alert rules. If you see half of them are network only because they have different different set of things. Then we have can also. So all these alert rules are present in here. Now what these alert rules do is they will send us alert.
+Parmar, Vivek (IN - Bangalore, Encora) 41 minutes 47 seconds
+In this very simple emails and SMS, I'll just take an example. So if a device is down or a critical, I'll just take an example of this virtual machine or this VDI. It says it is not available so it will give us a detail that is reporting status.
+Parmar, Vivek (IN - Bangalore, Encora) 42 minutes 7 seconds
+VDI this, this, this and the device is in critical state so probably we'll check it and after three to 4 minutes we'll sort out the issue and the value will come up and the device is up and running again. Similar to that there will be virtual machine alerts, so CPU utilization is high. Graph will come up here.
+Parmar, Vivek (IN - Bangalore, Encora) 42 minutes 27 seconds
+From what time to what time? We will go ahead and stop some extra service running on it. The value will come down from 98 and it will be in error and it will be notified to this particular set of people which is in the group.
+Parmar, Vivek (IN - Bangalore, Encora) 42 minutes 43 seconds
+OK, so cleared also it will notify and for the alert also it will notify.
+Parmar, Vivek (IN - Bangalore, Encora) 42 minutes 52 seconds
+Any questions? I know I'm going little overtime, but any questions?
+Parmar, Vivek (IN - Bangalore, Encora) 43 minutes 1 second
+OK, so if no questions then I'll just cover the last part. So if any alert will come what we what we do, it's very very simple. If any alerts will come, what we do is we will check the alert first. So there are two things to check. One is if if it is a website for this.
+Parmar, Vivek (IN - Bangalore, Encora) 43 minutes 21 seconds
+I'll just take an example. If this is a website alert, what we'll do is there will be a team who will manage this, right? Who manage this. So probably they will be logged in. Then they would do this. They would acknowledge the alert. So if you do an acknowledge of the alert.
+Parmar, Vivek (IN - Bangalore, Encora) 43 minutes 39 seconds
+What is what it will do is it will not send emails frequently. It will stop sending the notification emails or SMS or voice calls. OK, so you say acknowledge, you write the acknowledge notes and acknowledge it. I'm not going to do this because this is for the.
+Parmar, Vivek (IN - Bangalore, Encora) 43 minutes 56 seconds
+For Clint's team, so he will do it, but he can acknowledge this or you can write down that Clint should check because his his team manages this. So I'll write Clint should check just a simple.
+Parmar, Vivek (IN - Bangalore, Encora) 44 minutes 12 seconds
+Plain English and acknowledged. Now what it will do is it will stop sending emails to Clint's team with the alert rules which we have sent right and it is acknowledged. Now another option is.
+Parmar, Vivek (IN - Bangalore, Encora) 44 minutes 27 seconds
+You acknowledge and then if they are doing some maintenance on this right, any kind of maintenance or any kind of of thing like running this website or something then they can put an STD. This is very simple thing. It is basically your scheduled downtime.
+Parmar, Vivek (IN - Bangalore, Encora) 44 minutes 46 seconds
+OK, so you add an STD here schedule downtimes. You select all the checkpoints from which all collectors it is monitoring. You write maintenance is going on.
+Parmar, Vivek (IN - Bangalore, Encora) 45 minutes
+OK, something like that.
+Parmar, Vivek (IN - Bangalore, Encora) 45 minutes 3 seconds
+Maintenance and you select the duration. So 4 hours you will do the maintenance. You select the four hours or days or weeks, whatever you want here or from to from which date to what date. Select the date time if you want. I will say it now for four hours or if you want to select the date.
+Parmar, Vivek (IN - Bangalore, Encora) 45 minutes 22 seconds
+Accordingly OK you can select this and add an STD. OK now I'm just adding it just for the sake. So this is one time for four hours from now to 4 hours. In future if you want to do say suppose tomorrow you want to run up.
+Parmar, Vivek (IN - Bangalore, Encora) 45 minutes 39 seconds
+Scheduled downtime or something like maintenance so you can add it in the upcoming OK in the upcoming. So in that case from to to you can select right and obviously select the time zone as Eastern. We use Eastern in logic monitor OK.
+Parmar, Vivek (IN - Bangalore, Encora) 45 minutes 57 seconds
+You can remove this also once your activity is completed.
+Parmar, Vivek (IN - Bangalore, Encora) 46 minutes 3 seconds
+So this will if you put anything in STD, there will be no notification being sent to any of the.
+Parmar, Vivek (IN - Bangalore, Encora) 46 minutes 12 seconds
+Alert rules owners, basically anyone who is mentioned on the recipient group, nobody gets the alerts. OK if you put a thing a device in STD.
+Parmar, Vivek (IN - Bangalore, Encora) 46 minutes 26 seconds
+OK, so this is how you will cater the alerts. Typically the critical alerts. Now same goes with the error alerts as well. So if you have done something you know that some maintenance or something is going on or something is a is in in process. For this I
+Parmar, Vivek (IN - Bangalore, Encora) 46 minutes 46 seconds
+Actually put here typically send you can put so I will say here like acknowledge and I will say network.
+Parmar, Vivek (IN - Bangalore, Encora) 46 minutes 58 seconds
+Team to renew SSL.
+Parmar, Vivek (IN - Bangalore, Encora) 47 minutes 5 seconds
+acknowledged so like that we can acknowledge and we can put in STD if some maintenance is going on but since error error for error alert there will be a notification and not notification will not be sent so in that case I can acknowledge but
+Parmar, Vivek (IN - Bangalore, Encora) 47 minutes 25 seconds
+SSL notifications will be sent because for SSL we have a separate alert rules and I will show you that.
+Parmar, Vivek (IN - Bangalore, Encora) 47 minutes 36 seconds
+So for SSL, what we do is we have a separate alert rules and that will actually send the notification for all websites and all devices. So if you see here right this one, I'll open this.
+Parmar, Vivek (IN - Bangalore, Encora) 47 minutes 52 seconds
+So it goes for VPN and all everything. A escalation chain is there. OK how it is defined? It is very simple. I'll open one website and show it to you.
+Parmar, Vivek (IN - Bangalore, Encora) 48 minutes 4 seconds
+So something different is here.
+Parmar, Vivek (IN - Bangalore, Encora) 48 minutes 7 seconds
+You will go to this setting manage and you will see the checkpoints and alert triggering. So these are the settings. So if in 28 days the SSL is going to expire. Then it will send a warning alert in 15 days if the.
+Parmar, Vivek (IN - Bangalore, Encora) 48 minutes 27 seconds
+SSL is going to expire, it will send a error alert and if in seven days it is going to expire, it will send a critical alert. That's how it is defined on each and every 130 thirty five sites.
+Parmar, Vivek (IN - Bangalore, Encora) 48 minutes 43 seconds
+To be specific and resources, if we have a resource which is having a basically a certificate that is also being defined using the same same rule. So this alert rule is level at all.
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 1 second
+Not only critical at all and its priority is 130. OK and it is monitoring all websites, all instances. So this is for websites only. OK and this is the escalation change where probably network team and system teams are there.
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 20 seconds
+OK, and it will capture this data point.
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 24 seconds
+OK. Is it clear everybody?
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 28 seconds
+Any questions? Any questions?
+
+Gandhi, Gayathri (IN - Chennai, Encora)
+49 minutes 29 seconds49:29
+Gandhi, Gayathri (IN - Chennai, Encora) 49 minutes 29 seconds
+OK.
+
+C, Venkatesan (IN - Chennai)
+49 minutes 29 seconds49:29
+C, Venkatesan (IN - Chennai) 49 minutes 29 seconds
+Oh, yes, in big.
+49:29
+49 minutes 29 seconds
+Yeah.
+
+Gandhi, Gayathri (IN - Chennai, Encora)
+49 minutes 30 seconds49:30
+Gandhi, Gayathri (IN - Chennai, Encora) 49 minutes 30 seconds
+Yes.
+
+C, Venkatesan (IN - Chennai)
+49 minutes 32 seconds49:32
+C, Venkatesan (IN - Chennai) 49 minutes 32 seconds
+No.
+
+Parmar, Vivek (IN - Bangalore, Encora)
+49 minutes 33 seconds49:33
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 33 seconds
+OK, so I know I have. Yeah, go ahead. Yeah.
+
+C, Venkatesan (IN - Chennai)
+49 minutes 33 seconds49:33
+C, Venkatesan (IN - Chennai) 49 minutes 33 seconds
+Vivek, I have another.
+C, Venkatesan (IN - Chennai) 49 minutes 39 seconds
+Actually every every data will be captured through the collectors, right? So so if the collector has failed or any outage has happened, so how do we know that?
+
+Parmar, Vivek (IN - Bangalore, Encora)
+49 minutes 45 seconds49:45
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 45 seconds
+Right.
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 51 seconds
+Mhm.
+Parmar, Vivek (IN - Bangalore, Encora) 49 minutes 52 seconds
+So collector alerts will be there. So I talked about that actually in the when I was showing the collector. So every collectors will have a redundancy, right? Let's talk about little collectors and probably we can.
+Parmar, Vivek (IN - Bangalore, Encora) 50 minutes 8 seconds
+Discuss on this. So every site will have couple of collectors, right? I'll take Chennai as an example. So Chennai has two collectors, right? So if this goes down, all the device will move to this device. This is known as automatic failover.
+Parmar, Vivek (IN - Bangalore, Encora) 50 minutes 25 seconds
+Failover of the device. So if collector fails automatically the devices move to this right? Now we have set something like a failover site to site as well. So if both the collectors fail, all these devices will move to Dallas collector.
+Parmar, Vivek (IN - Bangalore, Encora) 50 minutes 43 seconds
+At any point of time, all sites will not go down. That is far obvious, right? So Dallas will not go down. At the same time, Chennai will not go down. Azure will not go down. So Chennai will fail to Dallas. Dallas will fail to Chennai.
+Parmar, Vivek (IN - Bangalore, Encora) 50 minutes 58 seconds
+OK, so Ashburn will fail to Dallas Equinox and Equinox Dallas will fail to Ashburn. You got my point. So here first set of failure is within these these virtual machines. So if I rebooted this, all devices will move from this device to this device.
+Parmar, Vivek (IN - Bangalore, Encora) 51 minutes 15 seconds
+OK, and these failovers you can see here these two failovers are set. So 40 if you see right 40 is failing, this is failing, 35 is failing to 40, 37 is failing to 39. So these failovers are site to site as well.
+Parmar, Vivek (IN - Bangalore, Encora) 51 minutes 32 seconds
+OK, so if so if Ashburn devices are collectors are down, all the devices will be monitored using Dallas collectors site to site failover. So that is there. OK.
+
+C, Venkatesan (IN - Chennai)
+51 minutes 34 seconds51:34
+C, Venkatesan (IN - Chennai) 51 minutes 34 seconds
+OK, got it. Thank you.
+C, Venkatesan (IN - Chennai) 51 minutes 45 seconds
+Mm.
+
+Parmar, Vivek (IN - Bangalore, Encora)
+51 minutes 48 seconds51:48
+Parmar, Vivek (IN - Bangalore, Encora) 51 minutes 48 seconds
+So yeah, so these are pretty much things which I wanted to show you. There is one last thing which I will cover up. I know logic monitor is not very, very easy to go. A lot of things are there, but.
+Parmar, Vivek (IN - Bangalore, Encora) 52 minutes 5 seconds
+We talked about modules, right? So this is the modules page. You have all modules coming up here. So these are for outdated ones. I'll show you then updated ones. So typically there will be around 23 pages of modules. You have your CPU here, memory here, so I'll just filter CPU.
+Parmar, Vivek (IN - Bangalore, Encora) 52 minutes 24 seconds
+CPU, there will be all CPUs. Now if I filter Win CPU, there will be Windows CPU. OK, space should be there I think. Yeah, so if you if you filter by Microsoft Windows CPU, so these are the Windows CPU modules. These are data sources or data points.
+Parmar, Vivek (IN - Bangalore, Encora) 52 minutes 42 seconds
+Yeah.
+Parmar, Vivek (IN - Bangalore, Encora) 52 minutes 44 seconds
+There will be also event sources. There will be also config sources, property sources, topology sources, job monitors and all those things. Log sources will be there. So these are all data points, different different types of data points. OK, so for anything if you want to search what data points are available, you can.
+Parmar, Vivek (IN - Bangalore, Encora) 53 minutes 4 seconds
+Type in there. Uh, MEMORY, right?
+Parmar, Vivek (IN - Bangalore, Encora) 53 minutes 11 seconds
+So Windows memory OK Windows memory 64 bit Hyper V memory. So like that it will say for collectors it is different. So all these data points are available here. You have you can go through that and you can see what all data points we have implemented. So what is in use is in use, what is not in use.
+Parmar, Vivek (IN - Bangalore, Encora) 53 minutes 31 seconds
+Will remain not in use because we don't have AWS, so we are not monitoring that. But whatever we have, we are monitoring that. So these are new collectors. This one we can probably use. So what we do is we update it. So OK, no, you have to filter it out from here. So what we.
+Parmar, Vivek (IN - Bangalore, Encora) 53 minutes 50 seconds
+We do is outdated we do here so all those are outdated will be selected at one go and then I can update those and here I will say praise applies to so these will be automatically updated. Maybe they are in use or not in use but still will.
+Parmar, Vivek (IN - Bangalore, Encora) 54 minutes 10 seconds
+Keep it updated OK and if we have any modules which we we want to install or add then we can add the modules using this. OK so all these modules will be available.
+Parmar, Vivek (IN - Bangalore, Encora) 54 minutes 25 seconds
+If if if there is a requirement like we want to implement some module for a new device which has come, say suppose we have Synology server or Synology.
+Parmar, Vivek (IN - Bangalore, Encora) 54 minutes 40 seconds
+Devices. So these are not yet implemented, right? Not in use. So what we will do is how they we can set it in use right that we have to search for, right? So what we'll do is we'll search for here and here they will.
+Parmar, Vivek (IN - Bangalore, Encora) 55 minutes
+I will say something about it right the information. So if you click on applies nothing is coming here. OK if something is coming here that means this Synology will apply to these many servers.
+Parmar, Vivek (IN - Bangalore, Encora) 55 minutes 14 seconds
+Synology will apply to these many servers. OK, these many servers using what? Using this info add category Synology. OK, so like that we we need to set up the devices.
+Parmar, Vivek (IN - Bangalore, Encora) 55 minutes 30 seconds
+OK, another example is your CPU. Just for example. So we talk about Win CPU, sorry Win space CPU. So when we say Microsoft Windows CPU, it is a data source and Microsoft Windows CPU.
+Parmar, Vivek (IN - Bangalore, Encora) 55 minutes 49 seconds
+So on which machines it is applying to, you can click on that and you can search for it. All Windows machines it will apply correct.
+Parmar, Vivek (IN - Bangalore, Encora) 55 minutes 59 seconds
+So all data points will be here. Graphs will be here how things will work. So each module you can check what it can do, what it can give information to you. OK, some modules will be auto configured using the app logic monitoring intelligence and some will be.
+Parmar, Vivek (IN - Bangalore, Encora) 56 minutes 16 seconds
+You have to manually configure.
+Parmar, Vivek (IN - Bangalore, Encora) 56 minutes 20 seconds
+OK, so I guess all of you have got the access to logic monitor, so you can just go through it and kind of play around one. Another section is log. I'm just going to cover in a couple of minutes.
+Parmar, Vivek (IN - Bangalore, Encora) 56 minutes 36 seconds
+So you will be able to see the logs of devices here. Currently we are not monitoring all logs from all systems. We are only monitoring from some network devices, firewalls and the security devices and the lone serve SSO logs.
+Parmar, Vivek (IN - Bangalore, Encora) 56 minutes 56 seconds
+So these are typically the loan services or logs which loan services we monitor. So these logs actually grow huge in size around 100 GB or so and these we monitor, but you can get logs for any device for a certain period of time. So in last five minutes these many logs were there last.
+Parmar, Vivek (IN - Bangalore, Encora) 57 minutes 16 seconds
+15 minutes these logs were there and you can filter using the resources. It is very easy. I'll just take an example of one device. Basically this I will take an example of this only. So say suppose I will search here this device and you can do.
+Parmar, Vivek (IN - Bangalore, Encora) 57 minutes 35 seconds
+Any kind of search here. So you select this and you go to logs. It will take you to the log page and it will have a certain query ID resource ID equal to this and it will give you the logs for that.
+Parmar, Vivek (IN - Bangalore, Encora) 57 minutes 52 seconds
+All logs which are coming and collecting being collected for that and you will see the logs data and a number of logs. So 15 minutes it will it will get some 62,000 logs. Now SSOS are like that only so.
+Parmar, Vivek (IN - Bangalore, Encora) 58 minutes 10 seconds
+That's how they have configured. OK, so the same with network devices, same with system devices. Any any any devices what we have configured for log will will come up here OK.
+Parmar, Vivek (IN - Bangalore, Encora) 58 minutes 25 seconds
+OK, so for this we will wind up the call. Probably if Rick says we'll have one more session, but primarily I and Aishwarya work on Logic Monitor and Sindhu and I think recently Shankar also has been working on.
+Parmar, Vivek (IN - Bangalore, Encora) 58 minutes 45 seconds
+Logic Monitor and Network team has access. You guys have access. Loneserv team has access. Kendall of teams have access. So there are a lot of other team members also have access to Logic Monitor and everybody.
+Parmar, Vivek (IN - Bangalore, Encora) 59 minutes
+Can see the devices and acknowledge them. Acknowledge is something which we have kept active for you guys as well and read only access. So those two things are there. Maybe in future we will be customizing.
+Parmar, Vivek (IN - Bangalore, Encora) 59 minutes 15 seconds
+The access levels like your app data which actually Zach had told yesterday. So same way in logic monitor maybe we will be adding few more access to you so that you can customize or add device or kind of tweak with device or add some parameters to it or tweak with the thresholds and.
+Parmar, Vivek (IN - Bangalore, Encora) 59 minutes 35 seconds
+That kind of things.
+Parmar, Vivek (IN - Bangalore, Encora) 59 minutes 37 seconds
+OK.
+Parmar, Vivek (IN - Bangalore, Encora) 59 minutes 39 seconds
+OK, sorry, going half half an hour more on this, but this is logic monitor, so yeah.
+59:40
+59 minutes 40 seconds
+Yeah.
+59:40
+59 minutes 40 seconds
+OK.
+
+N, Azeemullah (IN - Chennai)
+59 minutes 48 seconds59:48
+N, Azeemullah (IN - Chennai) 59 minutes 48 seconds
+Yeah, thanks. You actually you have covered a lot. Thanks. Thanks much for that.
+
+Parmar, Vivek (IN - Bangalore, Encora)
+59 minutes 49 seconds59:49
+Parmar, Vivek (IN - Bangalore, Encora) 59 minutes 49 seconds
+Uh, yeah. Thank you guys.
+Parmar, Vivek (IN - Bangalore, Encora) 59 minutes 53 seconds
+Yeah, yeah, actually Rick told me to cover a good amount of things for you guys because probably you guys will have access to multiple monitoring things. Appnet, Logic, I think Statuscast will also come in picture if I'm not sure on that. But yeah, so that's why I.
+Parmar, Vivek (IN - Bangalore, Encora) 1 hour 13 seconds
+I took some extra time to cover it up. OK, thank you. If you have any questions or have login related issues, I know everybody has logged in, but still if you have any issues then you can reach out to Aishwarya or myself or Sandhu. Anyone of us can guide you.
+
+N, Azeemullah (IN - Chennai)
+1 hour 15 seconds1:00:15
+N, Azeemullah (IN - Chennai) 1 hour 15 seconds
+Yeah, actually.
+
+Parmar, Vivek (IN - Bangalore, Encora)
+1 hour 29 seconds1:00:29
+Parmar, Vivek (IN - Bangalore, Encora) 1 hour 29 seconds
+OK. Thanks. Thanks everybody. Happy weekend. Bye. Thank you. Thank you.
+
+N, Azeemullah (IN - Chennai)
+1 hour 30 seconds1:00:30
+N, Azeemullah (IN - Chennai) 1 hour 30 seconds
+Yeah, sure.
+N, Azeemullah (IN - Chennai) 1 hour 32 seconds
+Yeah, yeah, that answer.
+
+C, Venkatesan (IN - Chennai)
+1 hour 33 seconds1:00:33
+C, Venkatesan (IN - Chennai) 1 hour 33 seconds
+Thank you. Thank you.
