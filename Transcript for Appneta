@@ -1,0 +1,338 @@
+Appneta Review
+October 30, 2025 
+AI-generated content may be incorrect
+
+Heffron, Christopher (US - Indiana)
+0 minutes 10 seconds0:10
+Heffron, Christopher (US - Indiana) 0 minutes 10 seconds
+Hey, Zach.
+
+Leiter, Zachary (US - Indiana)
+0 minutes 29 seconds0:29
+Leiter, Zachary (US - Indiana) 0 minutes 29 seconds
+would be great. Uh
+
+Heffron, Christopher (US - Indiana)
+0 minutes 30 seconds0:30
+Heffron, Christopher (US - Indiana) 0 minutes 30 seconds
+Is it the same one that we built in the Dallas office? I can't. I can't remember if it was Dallas or should not we we put one in there.
+
+Leiter, Zachary (US - Indiana)
+0 minutes 38 seconds0:38
+Leiter, Zachary (US - Indiana) 0 minutes 38 seconds
+Maybe kind of, yes, but yeah, but this would be one. I need it to be on a separate. I know cuz we trunk to it. I want it to be on a separate VLAN because it's gonna live in the oh, it's not. I don't. It's gonna be used for SSHing to our option two boxes across the tunnels and I don't want it to be on the.
+
+Lees, Jeffrey (US - New York)
+0 minutes 40 seconds0:40
+Lees, Jeffrey (US - New York) 0 minutes 40 seconds
+Dallas.
+
+Leiter, Zachary (US - Indiana)
+0 minutes 57 seconds0:57
+Leiter, Zachary (US - Indiana) 0 minutes 57 seconds
+On the same VLAN as the rest of the servers because I want it segmented off and I so I can create something separate just for it would be the ideal scenario. Obviously we don't do that right now and I know that's not this call for but I just I I don't know what what you're gonna need from me to kind of or maybe I just need to schedule a call with you to walk.
+Leiter, Zachary (US - Indiana) 1 minute 17 seconds
+Through what what I need.
+
+Heffron, Christopher (US - Indiana)
+1 minute 19 seconds1:19
+Heffron, Christopher (US - Indiana) 1 minute 19 seconds
+Just give me the VLAN number and and I I think wasn't it ran by a script when we originally set that one in the first place. I can't remember. It's been it's been a while ago since we created that one, so I'm kinda cloudy on that.
+
+Leiter, Zachary (US - Indiana)
+1 minute 31 seconds1:31
+Leiter, Zachary (US - Indiana) 1 minute 31 seconds
+Yeah, this, yeah, yeah, this is just a just a I yeah, I don't have any prereqs other than, you know, an Ubuntu or Red Hat box, whatever. Probably Ubuntu just for licensing. This will work just fine for that. But anyway, that's fine.
+
+Heffron, Christopher (US - Indiana)
+1 minute 46 seconds1:46
+Heffron, Christopher (US - Indiana) 1 minute 46 seconds
+OK.
+
+Leiter, Zachary (US - Indiana)
+1 minute 47 seconds1:47
+Leiter, Zachary (US - Indiana) 1 minute 47 seconds
+I'll I'll pay you. I have to create a VLAN and stuff for that to segment everything off and then I'll let you know. OK, I'll work on that.
+Leiter, Zachary (US - Indiana) 17 minutes 8 seconds
+Video conferencing. If you saw this really bad, that could imply a issue with a video call or using IP phones. That's not really relevant to most of what we're doing here, but it's something to at least be aware of.
+Leiter, Zachary (US - Indiana) 17 minutes 23 seconds
+If we look at, let's say, the last seven days, let's see what we can see in here.
+Leiter, Zachary (US - Indiana) 17 minutes 31 seconds
+All right. So we see all kinds of stuff up here. So it looks like we had some violations. We had some times where data loss was a little higher than what the default setting is set to. In this case, it's 2%. So it pinpoints those times we have route changes. This is coming across the Internet, going overseas, so we would expect to see quite often.
+Leiter, Zachary (US - Indiana) 17 minutes 51 seconds
+Just route changes across from there and then some network changes as well. So we come in here and now we can look and see, OK, over the last seven days there has been some data loss, there has been a little bit of jitter. We've had some issues with some round trip for given points. A little bit of data loss or some variance in here doesn't necessarily mean that.
+Leiter, Zachary (US - Indiana) 18 minutes 10 seconds
+This is a real problem. What we want to know is if there was a user impact. This would just give us some information to go look if we knew that a user or there was an outage or we were experiencing slowness giving a.
+Leiter, Zachary (US - Indiana) 18 minutes 27 seconds
+A given window, we could use this to help drill into those particular times to say, OK, well, we knew during this time we actually did see a fairly decent amount of data loss here, right there. That probably explains why we saw slowness if it was OK.
+Leiter, Zachary (US - Indiana) 18 minutes 43 seconds
+And then this will give us some tools to help kind of drill down to see maybe where that slowness happened. Appneta by default, when it sees a violation, should run a diagnostic, which we'll look at here in a second, and that's going to give us a little bit more detailed information for things at that specific time.
+Leiter, Zachary (US - Indiana) 19 minutes 1 second
+But if we click on a given point in there, we can see if we click on that, it's going to pull up the exact hops that that route took at that exact time. So these would be the hops. So it shows you the IP addresses there as you scroll over them. How long?
+Leiter, Zachary (US - Indiana) 19 minutes 17 seconds
+That hop took.
+Leiter, Zachary (US - Indiana) 19 minutes 20 seconds
+To get to, it looks like.
+Leiter, Zachary (US - Indiana) 19 minutes 24 seconds
+Yeah, there you go. So get some useful information in there.
+Leiter, Zachary (US - Indiana) 19 minutes 30 seconds
+If we look at a diagnostic test, if we look at the last one, if we drill into here, this will give us through and say, OK, well what happened during the last. So this was on the last time I saw a violation. It's all there. We can look through and it can actually pinpoint and say, OK, this is this is the hop where we were losing most of our.
+Leiter, Zachary (US - Indiana) 19 minutes 50 seconds
+Our data. So it looks like it was routing through Singapore and at that time our Singapore hop was a particular problem. This is also particularly useful if we needed to. If this was happening on a regular basis or we were seeing constant data loss when we were hopping through there, we can utilize this information to reach out to.
+Leiter, Zachary (US - Indiana) 20 minutes 10 seconds
+Data in particular and say, hey, we're noticing loss when you route us through Singapore on a particular node. Can you make sure we do not get routed through there? And that might help address our information or address the this from happening again. It happening once or twice isn't necessarily the end of the world.
+Leiter, Zachary (US - Indiana) 20 minutes 30 seconds
+It doesn't necessarily mean that there is a there's a problem.
+Leiter, Zachary (US - Indiana) 20 minutes 35 seconds
+At least not on a regular basis, but that kind of just drills into some more information on here. A lot of this is just going to take some playing around, but most of the data is fairly straightforward from a network point of view. It's just getting in here and looking.
+Leiter, Zachary (US - Indiana) 20 minutes 50 seconds
+So coming in here back to there, just to kind of recap or reshow this again, we've got some tags up here, so we've already got a lot of existing routes and network paths in here. So if you're looking for something in particular, you just need to filter down into into that. So if you know you're looking coming from a particular data center.
+Leiter, Zachary (US - Indiana) 21 minutes 9 seconds
+Or you're looking for a particular destination that we're monitoring. This is where you would come to, and there's lots and lots of ways to filter that information down.
+Leiter, Zachary (US - Indiana) 21 minutes 21 seconds
+I've gone through a lot of stuff there already. I'm going to jump to another piece, but do we have any specific questions up to this point?
+Leiter, Zachary (US - Indiana) 21 minutes 29 seconds
+Or something you'd like to see.
+
+Moulana, Shaik (IN - Chennai, Encora)
+21 minutes 36 seconds21:36
+Moulana, Shaik (IN - Chennai, Encora) 21 minutes 36 seconds
+No, Jack.
+
+N, Azeemullah (IN - Chennai)
+21 minutes 37 seconds21:37
+N, Azeemullah (IN - Chennai) 21 minutes 37 seconds
+Hi this is Hazim. Actually I would like to know how the anomaly is placed in this networks like what's the thresholds or something it's.
+
+Leiter, Zachary (US - Indiana)
+21 minutes 38 seconds21:38
+Leiter, Zachary (US - Indiana) 21 minutes 38 seconds
+Okay, yeah.
+
+N, Azeemullah (IN - Chennai)
+21 minutes 52 seconds21:52
+N, Azeemullah (IN - Chennai) 21 minutes 52 seconds
+If any anomaly got detected with them, will they notify on which place it will be notified? So can you show some any of the previous anomaly got detected and how we look into what exactly was reported kind of stuff?
+
+Leiter, Zachary (US - Indiana)
+22 minutes 9 seconds22:09
+Leiter, Zachary (US - Indiana) 22 minutes 9 seconds
+OK, so let's see what we get. So the there is because this is a bit of a new tool for us. The oh thresholds that they're on there are probably a little lower than what we need them to be. So we do get quite a few emails, but at the moment that's all we're getting from this is emails that come to our group.
+
+Moulana, Shaik (IN - Chennai, Encora)
+22 minutes 28 seconds22:28
+Moulana, Shaik (IN - Chennai, Encora) 22 minutes 28 seconds
+Mm.
+
+Leiter, Zachary (US - Indiana)
+22 minutes 29 seconds22:29
+Leiter, Zachary (US - Indiana) 22 minutes 29 seconds
+Group, I imagine Jeff and Rick, we probably want to add, is there a distribution list that's gonna be for the NOC that we can forward these two as well?
+
+N, Azeemullah (IN - Chennai)
+22 minutes 39 seconds22:39
+N, Azeemullah (IN - Chennai) 22 minutes 39 seconds
+OK.
+
+Leiter, Zachary (US - Indiana)
+22 minutes 43 seconds22:43
+Leiter, Zachary (US - Indiana) 22 minutes 43 seconds
+Uh, did I lose?
+
+N, Azeemullah (IN - Chennai)
+22 minutes 43 seconds22:43
+N, Azeemullah (IN - Chennai) 22 minutes 43 seconds
+Do we find any any anomaly recently or using this app network?
+
+Leiter, Zachary (US - Indiana)
+22 minutes 49 seconds22:49
+Leiter, Zachary (US - Indiana) 22 minutes 49 seconds
+Uh, so I'm trying to think of a good example that I used recently. Um.
+Leiter, Zachary (US - Indiana) 22 minutes 59 seconds
+I'm trying to think off the top. I don't have one off the top of my head. So where a spot that has been useful for clients. So we have lots of our clients that utilize VP NS or over the Internet and if they see slowness or if there is an issue, actually I can't think of a a good one. Let me.
+
+N, Azeemullah (IN - Chennai)
+23 minutes 3 seconds23:03
+N, Azeemullah (IN - Chennai) 23 minutes 3 seconds
+OK.
+
+Leiter, Zachary (US - Indiana)
+23 minutes 18 seconds23:18
+Leiter, Zachary (US - Indiana) 23 minutes 18 seconds
+Get in here filter. OK, so one of the areas that we want to filter that we look in from is from the IBM data center.
+
+N, Azeemullah (IN - Chennai)
+23 minutes 27 seconds23:27
+N, Azeemullah (IN - Chennai) 23 minutes 27 seconds
+OK.
+
+Leiter, Zachary (US - Indiana)
+23 minutes 27 seconds23:27
+Leiter, Zachary (US - Indiana) 23 minutes 27 seconds
+So we got now let me close that monitoring my monitoring node in there and that's this little box that starts with the AZ, it's down there in ZOS and from there we monitor a lot of our client public endpoints.
+Leiter, Zachary (US - Indiana) 23 minutes 43 seconds
+As well as we monitor their oh words, the word servers as well. I mean getting a good one in here.
+Leiter, Zachary (US - Indiana) 23 minutes 55 seconds
+So we've got a client tag.
+Leiter, Zachary (US - Indiana) 23 minutes 59 seconds
+So client, uh, let's look for.
+Leiter, Zachary (US - Indiana) 24 minutes 4 seconds
+It's one that I know has a pretty good associated. OK, all right, so here's something. Well, let's see. All right, so this is one of our clients is associated. So this is doing a monitor to their public endpoint that we have a VPN connection.
+Leiter, Zachary (US - Indiana) 24 minutes 23 seconds
+So we have two of those. So this shows our thresholds to there and this is to their printer inside of their network. So this uses the VPN tunnel to access the printer. And what this does is actually look at it on a TCP port range. So you'll see that it's TCP port and we're looking at 5530.
+
+N, Azeemullah (IN - Chennai)
+24 minutes 25 seconds24:25
+N, Azeemullah (IN - Chennai) 24 minutes 25 seconds
+OK.
+N, Azeemullah (IN - Chennai) 24 minutes 38 seconds
+Mhm.
+
+Leiter, Zachary (US - Indiana)
+24 minutes 43 seconds24:43
+Leiter, Zachary (US - Indiana) 24 minutes 43 seconds
+And there's been a couple instances, I don't know if associated has any recently where we've gotten reports that the we were unable to send prints to their word server and it is particularly useful to be able to come in here and say OK, why is that?
+Leiter, Zachary (US - Indiana) 25 minutes 2 seconds
+Not making it there. Well, we can tell it's not making it there because your endpoint stopped responding.
+
+N, Azeemullah (IN - Chennai)
+25 minutes 9 seconds25:09
+N, Azeemullah (IN - Chennai) 25 minutes 9 seconds
+OK, OK.
+
+Leiter, Zachary (US - Indiana)
+25 minutes 9 seconds25:09
+Leiter, Zachary (US - Indiana) 25 minutes 9 seconds
+So that that's been that way we can pinpoint. They maybe go back and restart their service. It looks like there was at some point it did see. Oh, I know why. OK, if I go TCP, yeah, the TCP has been fine.
+Leiter, Zachary (US - Indiana) 25 minutes 25 seconds
+I'm trying to find it. It's been a little, it's been a few weeks since last time we had one of those and I'm trying to think if there's.
+Leiter, Zachary (US - Indiana) 25 minutes 33 seconds
+Wish I had a better example to show you.
+Leiter, Zachary (US - Indiana) 25 minutes 39 seconds
+Uh.
+Leiter, Zachary (US - Indiana) 25 minutes 42 seconds
+But that I'll try to see. So not all of them respond to ICMP right now. So like this is so DCU, they're public endpoints. They don't respond to ICMP. That's why you see nothing here. We still leave the monitoring in there that way because we can still see some of the hops, which is beneficial.
+
+N, Azeemullah (IN - Chennai)
+25 minutes 56 seconds25:56
+N, Azeemullah (IN - Chennai) 25 minutes 56 seconds
+Mm-hmm.
+
+Leiter, Zachary (US - Indiana)
+26 minutes 1 second26:01
+Leiter, Zachary (US - Indiana) 26 minutes 1 second
+So we know where it it stops coming through and then like I said, we could still see the word server. There was one.
+Leiter, Zachary (US - Indiana) 26 minutes 9 seconds
+Here we go. Here's one that if we go out far enough.
+Leiter, Zachary (US - Indiana) 26 minutes 14 seconds
+We can see.
+Leiter, Zachary (US - Indiana) 26 minutes 18 seconds
+So it looks like they did have if we look in this range. So the little black line is indicating that they it had actually. My guess is maybe they restarted their.
+Leiter, Zachary (US - Indiana) 26 minutes 34 seconds
+Their box, but it looks like we had several route changes, which you wouldn't expect to see a ton of route changes inside of this network. So this is our hop and then once you see these other ones, this is getting into their network as it hops around theirs. So it looks like they did have a blip. Maybe they restarted the server.
+Leiter, Zachary (US - Indiana) 26 minutes 51 seconds
+Or they had a network change in there and that caused a loss of connectivity to it. But if they came to us and said, hey, we'll we were unable to say and send a print at a specific time, we could justify and show what that's there. Another big benefit for this particular product is to rule the network out.
+Leiter, Zachary (US - Indiana) 27 minutes 11 seconds
+So we'll get regular occurrences where they'll ask, hey, where there's slowness or something's not working and they want to blame us or not to say blame us, but they want to rule out the networking. So that's a particularly beneficial tool is there. There may be nothing wrong and that was something we can say. So we can come in here and say.
+
+N, Azeemullah (IN - Chennai)
+27 minutes 18 seconds27:18
+N, Azeemullah (IN - Chennai) 27 minutes 18 seconds
+You know.
+
+Leiter, Zachary (US - Indiana)
+27 minutes 30 seconds27:30
+Leiter, Zachary (US - Indiana) 27 minutes 30 seconds
+Well, from our Azure in the cloud going to wherever their endpoint is, all of our traffic is operating correctly.
+
+N, Azeemullah (IN - Chennai)
+27 minutes 38 seconds27:38
+N, Azeemullah (IN - Chennai) 27 minutes 38 seconds
+OK.
+N, Azeemullah (IN - Chennai) 27 minutes 40 seconds
+OK, OK.
+
+Leiter, Zachary (US - Indiana)
+27 minutes 42 seconds27:42
+Leiter, Zachary (US - Indiana) 27 minutes 42 seconds
+We've got look at Mr. Cooper stuff. So we've got things going to Mr. Cooper that happened. So Google to Mr. Cooper like they've had issues in the past where they want there there was what they were classifying as slowness.
+Leiter, Zachary (US - Indiana) 28 minutes
+But we can look in here and say, oh, I mean, this is coming from central going to several endpoints that are Mr. Cooper. And then we will be able to come in here and verify and give us a window. When did you see a problem? Well, you said it was in the last day.
+Leiter, Zachary (US - Indiana) 28 minutes 15 seconds
+Well, I can now come in here and say, well, other than a little bit of data loss that popped in right around that time, unless that happened to coincide exactly with when they experienced the issue, this has been pretty rock solid. There hasn't been anything here that would indicate there would be a huge issue with the connection.
+
+N, Azeemullah (IN - Chennai)
+28 minutes 32 seconds28:32
+N, Azeemullah (IN - Chennai) 28 minutes 32 seconds
+OK.
+
+Leiter, Zachary (US - Indiana)
+28 minutes 33 seconds28:33
+Leiter, Zachary (US - Indiana) 28 minutes 33 seconds
+So that's a big tool to help us rule things out.
+Leiter, Zachary (US - Indiana) 28 minutes 37 seconds
+And at the moment, with your guys' access, you'll just be able to view the data that we already have in here. You can't add anything just yet. That's something that we probably will allow in the future. I'm going to pop over and just look at, just show you guys that real fast. It's we only have actually now I'm hitting time.
+Leiter, Zachary (US - Indiana) 28 minutes 56 seconds
+I'm here now that I think about it and I've talked too long. Do you have any real quick question before we gotta jump on to another call?
+
+N, Azeemullah (IN - Chennai)
+29 minutes 4 seconds29:04
+N, Azeemullah (IN - Chennai) 29 minutes 4 seconds
+Yeah, good.
+
+Leiter, Zachary (US - Indiana)
+29 minutes 7 seconds29:07
+Leiter, Zachary (US - Indiana) 29 minutes 7 seconds
+OK. Well, I this was just 30 minutes, a quick overview. Please get in, look at it. Maybe if you want to get a few questions together and we can either jump on another call or you can collate them and send them to me and I'll get some responses out to you guys.
+Leiter, Zachary (US - Indiana) 29 minutes 24 seconds
+But it's a particularly beneficial tool for looking at network paths. So and really all you're doing is coming up here and just looking for a source and a destination that you want to be targeting from and seeing what information is available.
+
+N, Azeemullah (IN - Chennai)
+29 minutes 30 seconds29:30
+N, Azeemullah (IN - Chennai) 29 minutes 30 seconds
+Yeah.
+
+Leiter, Zachary (US - Indiana)
+29 minutes 42 seconds29:42
+Leiter, Zachary (US - Indiana) 29 minutes 42 seconds
+But yeah, like I said, please reach out if you have any questions.
+TR
+Tautin, Rick (US - Pennsylvania)
+29 minutes 43 seconds29:43
+Tautin, Rick (US - Pennsylvania) 29 minutes 43 seconds
+Awesome. Thanks, Zach. Yeah, I I'll, I'll set something for next week, but I'll get with all the guys and we'll get a, you know, list of questions and and things else we want to see. But I appreciate you showing us this for today at least.
+
+Leiter, Zachary (US - Indiana)
+29 minutes 54 seconds29:54
+Leiter, Zachary (US - Indiana) 29 minutes 54 seconds
+Awesome. Sounds good.
+TR
+Tautin, Rick (US - Pennsylvania)
+29 minutes 56 seconds29:56
+Tautin, Rick (US - Pennsylvania) 29 minutes 56 seconds
+Alright, great.
+
+Leiter, Zachary (US - Indiana)
+29 minutes 58 seconds29:58
+Leiter, Zachary (US - Indiana) 29 minutes 58 seconds
+You guys have a good rest of your day. Thanks.
+TR
+Tautin, Rick (US - Pennsylvania)
+29 minutes 59 seconds29:59
+Tautin, Rick (US - Pennsylvania) 29 minutes 59 seconds
+Thanks guys. Yep. Bye guys.
+
+Lees, Jeffrey (US - New York)
+29 minutes 59 seconds29:59
+Lees, Jeffrey (US - New York) 29 minutes 59 seconds
+Thank you.
+
+N, Azeemullah (IN - Chennai)
+30 minutes 1 second30:01
+N, Azeemullah (IN - Chennai) 30 minutes 1 second
+Yeah, thanks all. Have a good day.
+
+Leiter, Zachary (US - Indiana)
+30 minutes 2 seconds30:02
+Leiter, Zachary (US - Indiana) 30 minutes 2 seconds
+Bye.
